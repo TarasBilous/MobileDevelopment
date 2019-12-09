@@ -57,7 +57,6 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void onSignInSuccess() {
-
         startActivity(new Intent(this, MainActivity.class));
     }
 
