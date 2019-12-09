@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MobileDevelopment</string>
+    <string name="sign_out">Sign out</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="email_error">incorrect email format</string>
+    <string name="password_error">password should be at least 8 characters</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="check">Please input correct fields</string>
+    <string name="phone_error">incorrect phone</string>
+    <string name="name_error">incorrect name</string>
+    <string name="sign_up_failed">Sign up failed</string>
+    <string name="sign_up_explanation">This email is already registered</string>
+    <string name="welcome">Welcome, %s!</string>
+    <string name="ok">OK</string>
+</resources>
