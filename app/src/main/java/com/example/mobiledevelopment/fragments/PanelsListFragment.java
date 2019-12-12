@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.ProgressBar;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.view.View;
 
 import com.example.mobiledevelopment.ApplicationEx;
+import com.example.mobiledevelopment.CreatePanelActivity;
 import com.example.mobiledevelopment.InternetConnectionReceiver;
 import com.example.mobiledevelopment.Panel;
 import com.example.mobiledevelopment.PanelService;
@@ -64,6 +66,9 @@ public class PanelsListFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getActivity()), VERTICAL));
         mRecyclerView.setAdapter(new RecyclerAdapter(mMainLayout.getContext(), new ArrayList<>()));
+        view.findViewById(R.id.new_item_button).setOnClickListener(v -> {
+            startActivity(new Intent(view.getContext(), CreatePanelActivity.class));
+        });
     }
 
     private void initSwipeRefresh(View view) {

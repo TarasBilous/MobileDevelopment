@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.SignUpActivity" />
+        <activity android:name=".CreatePanelActivity" />
         <activity
             android:name=".PanelDetailsActivity"
             android:parentActivityName=".MainActivity" />

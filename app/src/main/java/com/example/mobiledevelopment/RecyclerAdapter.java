@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PanelV
         holder.mPower.setText(String.format(context.getString(R.string.power), String.valueOf(mPanels.get(position).power)));
         holder.mAddress.setText(String.format(context.getString(R.string.address), mPanels.get(position).address));
         holder.mBatteryCapacity.setText(String.valueOf(mPanels.get(position).batteryCapacity));
-        Picasso.get().load(mPanels.get(position).img).into(holder.mImage);
+        Picasso.get().load(mPanels.get(position).image).into(holder.mImage);
     }
 
     private void openPanelDetails(int position){
@@ -56,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PanelV
         intent.putExtra("power", String.valueOf(mPanels.get(position).power));
         intent.putExtra("address", mPanels.get(position).address);
         intent.putExtra("battery_capacity", String.valueOf(mPanels.get(position).batteryCapacity));
-        intent.putExtra("image", mPanels.get(position).img);
+        intent.putExtra("image", mPanels.get(position).image);
         mContext.startActivity(intent);
     }
 
