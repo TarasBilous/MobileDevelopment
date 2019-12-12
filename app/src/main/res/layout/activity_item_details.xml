@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="50dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".PanelDetailsActivity">
+
+    <ImageView
+        android:id="@+id/img_details"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/image"
+        tools:src="@tools:sample/backgrounds/scenic[14]" />
+
+    <TextView
+        android:id="@+id/type_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/power_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/power_description"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/battery_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/battery_description"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/address_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address_description"
+        android:textSize="18sp" />
+
+</LinearLayout>

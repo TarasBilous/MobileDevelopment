@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="confirmation_button">@android:color/holo_green_light</color>
     <color name="reference_button">@android:color/darker_gray</color>
+    <color name="color_black">#555555</color>
 </resources>

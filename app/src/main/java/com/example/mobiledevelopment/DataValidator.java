@@ -48,7 +48,15 @@ public final class DataValidator {
             nameField.setError(null);
         }
 
-
         return valid;
     }
+
+    public static boolean isEmailValid(String email) {
+        return !email.isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static boolean isNameValid(String name) {
+        return name.matches(IS_NAME_REGEX);
+    }
+
 }
