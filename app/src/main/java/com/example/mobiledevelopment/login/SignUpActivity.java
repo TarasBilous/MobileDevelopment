@@ -1,4 +1,4 @@
-package com.example.mobiledevelopment;
+package com.example.mobiledevelopment.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.mobiledevelopment.DataValidator;
+import com.example.mobiledevelopment.MainActivity;
+import com.example.mobiledevelopment.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;

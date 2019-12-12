@@ -22,4 +22,18 @@
     <string name="fetching_failed">Fetching from server failed</string>
     <string name="no_internet">No internet</string>
     <string name="server_error">Server error: %d</string>
+    <string name="tab_2">Tab 2</string>
+    <string name="power_description">Power: </string>
+    <string name="battery_description">Battery Capacity: </string>
+    <string name="address_description">Address: </string>
+    <string name="uploading">Uploading</string>
+    <string name="details">Details:</string>
+    <string name="upload_fail">Upload failed</string>
+    <string name="enter_password">Enter your password:</string>
+    <string name="name_update_success">Name successfully updated</string>
+    <string name="confirm">Confirm</string>
+    <string name="email_update_success">User email successfully updated.</string>
+    <string name="image_update_success">Image successfully updated</string>
+    <string name="save">Save</string>
+    <string name="upload">Please, wait</string>
 </resources>

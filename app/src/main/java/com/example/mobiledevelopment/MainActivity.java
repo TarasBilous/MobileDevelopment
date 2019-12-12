@@ -1,97 +1,66 @@
 package com.example.mobiledevelopment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.IntentFilter;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
-import com.google.android.material.snackbar.Snackbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static androidx.recyclerview.widget.RecyclerView.VERTICAL;
+import com.example.mobiledevelopment.login.SignInActivity;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RelativeLayout mMainLayout;
-    private RecyclerView mRecyclerView;
+    private FirebaseAuth mAuth;
     private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initClassFields();
-        initSwipeRefresh();
-        initInternetConnectionReceiver();
-        getServerData();
+        mProgressBar = findViewById(R.id.progress_bar_main);
+        mAuth = getApplicationEx().getAuth();
+        initTabs();
     }
 
-    private void initClassFields() {
-        mMainLayout = findViewById(R.id.layout_main);
-        mProgressBar = findViewById(R.id.progress_bar);
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, VERTICAL));
-        mRecyclerView.setAdapter(new RecyclerAdapter(new ArrayList<>()));
+    private void initTabs() {
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        TabsAdapter adapter = new TabsAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void initSwipeRefresh() {
-        SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipe_refresh);
-        swipeRefresh.setOnRefreshListener(() -> {
-            getServerData();
-            swipeRefresh.setRefreshing(false);
-        });
+    private ApplicationEx getApplicationEx() {
+        return ((ApplicationEx) getApplication());
     }
 
-    private void initInternetConnectionReceiver() {
-        IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        InternetConnectionReceiver receiver = new InternetConnectionReceiver(mMainLayout);
-        this.registerReceiver(receiver, filter);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sign_out_menu, menu);
+        return true;
     }
 
-    private void getServerData() {
-        PanelService service = ((ApplicationEx) getApplication()).getRestService();
-        Call<List<Panel>> call = service.getServerPanels();
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         mProgressBar.setVisibility(View.VISIBLE);
-        call.enqueue(new Callback<List<Panel>>() {
-
-            @Override
-            public void onResponse(Call<List<Panel>> call, Response<List<Panel>> response) {
-                processResponse(response);
-            }
-
-            @Override
-            public void onFailure(Call<List<Panel>> call, Throwable throwable) {
-                mProgressBar.setVisibility(View.INVISIBLE);
-                Snackbar.make(mMainLayout, R.string.fetching_failed, Snackbar.LENGTH_LONG).show();
-            }
-        });
+        mAuth.signOut();
+        mProgressBar.setVisibility(View.INVISIBLE);
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+        return true;
     }
 
-    private void processResponse(Response<List<Panel>> response) {
-        mProgressBar.setVisibility(View.INVISIBLE);
-        RecyclerAdapter adapter = (RecyclerAdapter) mRecyclerView.getAdapter();
-        if (adapter != null && response.isSuccessful()) {
-            adapter.updatePanels(response.body());
-        } else {
-            String error = String.format(
-                    getApplicationContext().getString(R.string.server_error),
-                    response.code());
-            Snackbar.make(mMainLayout, error, Snackbar.LENGTH_LONG).show();
-        }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }
