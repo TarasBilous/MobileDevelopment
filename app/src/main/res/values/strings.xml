@@ -35,5 +35,12 @@
     <string name="email_update_success">User email successfully updated.</string>
     <string name="image_update_success">Image successfully updated</string>
     <string name="save">Save</string>
+    <string name="new_panel">Create new panel</string>
     <string name="upload">Please, wait</string>
+    <string name="panel_type_field">panel type</string>
+    <string name="power_field">power</string>
+    <string name="address_field">address</string>
+    <string name="battery_capacity_field">battery capacity</string>
+    <string name="post_failed">Can\'t post data to server</string>
+    <string name="create_panel">Create Panel</string>
 </resources>
